@@ -20,11 +20,11 @@ OSVERSION=$(hostnamectl | awk '/Operating/ { print $4 }')
 [ $(arch) = x86_64 ] && PLATFORM=amd64
 
 # Specify cri-tools version 
-CRICTLVERSION=$1
-if [ -z $CRICTLVERSION ]; then
-        echo "ENT-ERR: No Param Found: Please specify one version cri-tools!!!"
-        exit 1
-fi
+#CRICTLVERSION=$1
+#if [ -z $CRICTLVERSION ]; then
+#        echo "ENT-ERR: No Param Found: Please specify one version cri-tools!!!"
+#        exit 1
+#fi
 
 if [ $MYOS = "Ubuntu" ]
 then
@@ -47,13 +47,13 @@ EOF
 
 	############### Install cri-tools
         # Download cri-tools release with the command
-        wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v${CRICTLVERSION}/crictl-${CRICTLVERSION}-linux-${PLATFORM}.tar.gz 
+        #wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v${CRICTLVERSION}/crictl-${CRICTLVERSION}-linux-${PLATFORM}.tar.gz 
         # Download the cri-tools checksum file, and validate cri-tools release against checksum file
-	wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v${CRICTLVERSION}/crictl-${CRICTLVERSION}-linux-${PLATFORM}.tar.gz.sha256sum 
-        [ $(echo $(cat crictl-${CRICTLVERSION}-linux-${PLATFORM}.tar.gz.sha256sum) | sha256sum --check | awk '{print $2}') != 'OK' ] && \
-                (echo "ENT-WARN: crictl FAIlED: sha256sum: WARNING: 1 computed checksum did not match!!!"; exit 1)
-        tar xvf crictl-${CRICTLVERSION}-linux-${PLATFORM}.tar.gz
-        sudo mv bin/* /usr/bin/	
+	#wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v${CRICTLVERSION}/crictl-${CRICTLVERSION}-linux-${PLATFORM}.tar.gz.sha256sum 
+        #[ $(echo $(cat crictl-${CRICTLVERSION}-linux-${PLATFORM}.tar.gz.sha256sum) | sha256sum --check | awk '{print $2}') != 'OK' ] && \
+        #        (echo "ENT-WARN: crictl FAIlED: sha256sum: WARNING: 1 computed checksum did not match!!!"; exit 1)
+        #tar xvf crictl-${CRICTLVERSION}-linux-${PLATFORM}.tar.gz
+        #sudo mv bin/* /usr/bin/	
 fi
 
 # Set iptables bridging
